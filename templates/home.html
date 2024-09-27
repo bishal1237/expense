@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Bishal Thakuri</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        table th,table td{
+            padding: 10px;
+            border:1px solid black;
+        }
+        table{
+            border:1px solid black;
+            border-collapse: collapse;
+            width: 70%;
+            margin: auto;
+        }
+        button{
+            width:max-content;
+            margin-left:15%;
+            padding:8px 15px;
+        }
+        a{
+            text-decoration:none;
+            color: black;
+            font-weight:600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.title }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.description }}</td>
+                <td>{{ expense.date }}</td>
+                <td><a href="{% url 'delete_item' expense.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </thead>
+    </table>
+    <button><a href="{% url 'add_items' %}">Add New Expense</a></button>
+</body>
+</html>
